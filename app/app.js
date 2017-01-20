@@ -1,24 +1,33 @@
+
+/**
+ * liberies
+ */
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View} from 'react-native';
+import { Router, Scene, ActionConst} from 'react-native-router-flux';
+import { Provider } from 'react-redux';
+
+/**
+ * Configs
+ */
+import store from './store.js';
+
+/**
+ * Containers
+ */
+import Home from './containers/Home';
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!2
-        </Text>
-        <Text style={styles.instructions}>
-        </Text>
-        <Text style={styles.instructions}>
-        </Text>
-      </View>
-    );
+      <Provider store={store}>
+        <Router>
+         <Scene key='root' hideNavBar={true} >
+            <Scene key='home' component={Home} initial={true} title='Home' direction='vertical'/>
+         </Scene>
+        </Router>
+      </Provider>
+    )
   }
 }
 
@@ -27,18 +36,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    backgroundColor: '#F5FCFF'
+  }
+})
 
-export default App;
+export default App
