@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import { View, Text, StyleSheet} from 'react-native'
+import { View, Text, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {

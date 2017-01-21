@@ -4,40 +4,33 @@
  */
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View} from 'react-native';
-import { Router, Scene, ActionConst} from 'react-native-router-flux';
 import { Provider } from 'react-redux';
+import I18n from 'react-native-i18n';
 
 /**
  * Configs
  */
 import store from './store.js';
+import Routes from './routes.js'; 
+import en from './i18n/en.js';
+import zh from './i18n/zh.js';
 
-/**
- * Containers
- */
-import Home from './containers/Home';
+// Enable fallbacks if you want `en-US` and `en-GB` to fallback to `en`
+I18n.fallbacks = true;
+
+I18n.translations = {
+  en,
+  zh,
+}
 
 class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <Router>
-         <Scene key='root' hideNavBar={true} >
-            <Scene key='home' component={Home} initial={true} title='Home' direction='vertical'/>
-         </Scene>
-        </Router>
+        <Routes />
       </Provider>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  }
-})
 
 export default App
