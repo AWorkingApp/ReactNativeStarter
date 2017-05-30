@@ -19,12 +19,43 @@ const styles = StyleSheet.create({
 
 class Login extends Component {
   constructor (props) {
-    super(props)
+    super(props);
+    this.state = {username: '', passError: ''};
   }
 
   render () {
       return <View style={styles.container}>
-          <TextInput style={styles.username} label={I18n.t('username')}/>
+          <TextInput 
+            label={I18n.t('username')}
+            onChangeText={(value) => this.setState({username: value})}
+            value={this.state.username}
+            validator={(text) => {
+               if (!text) {
+                  this.setState({userError: 'required'});
+               } else if (!/(.+)@(.+){2,}\.(.+){2,}/.test(text)){
+                  this.setState({userError: 'format error'});
+               } else {
+                  this.setState({userError: ''});
+               }
+            }}
+            errorMessage={this.state.userError}
+          />
+          <TextInput 
+            label={I18n.t('password')}
+            onChangeText={(value) => this.setState({password: value})}
+            value={this.state.password}
+            validator={(text) => {
+               if (!text) {
+                  this.setState({passError: 'required'});
+               } else {
+                  this.setState({passError: ''});
+               }
+            }}
+            errorMessage={this.state.passError}
+            textInputProps={{
+              secureTextEntry: true
+            }}
+          />
           <Button title={I18n.t('login')} raised />
         </View>
   }
