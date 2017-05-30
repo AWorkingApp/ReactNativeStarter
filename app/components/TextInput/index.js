@@ -32,7 +32,7 @@ const _TextField = (props) => {
   } = props;
   
   let _textInputProps = textInputProps || {};
-  const { onEndEditing, ...otherTextInputProps } = _textInputProps;
+  const { onEndEditing, value, ...otherTextInputProps } = _textInputProps;
   return <View style={containerStyle}>
       <FormLabel 
           containerStyle={labelStyle} 
@@ -50,6 +50,7 @@ const _TextField = (props) => {
               onChangeText(text);
             }
           }} 
+          value={value}
           onEndEditing={(e) => {
             if (validator) {
               validator(e.nativeEvent.text);
