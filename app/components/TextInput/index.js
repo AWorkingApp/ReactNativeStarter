@@ -1,17 +1,71 @@
-import React, { PropTypes } from 'react';
-import { View } from 'react-native';
+import React from 'react';
+import { View, ViewPropTypes } from 'react-native';
 
-import { FormLabel, FormInput } from 'react-native-elements'
+import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 
 const propTypes = {
-  label: PropTypes.string,
+  label: ViewPropTypes.string,
 };
 
 const _TextField = (props) => {
-  const { label, style, labelStyle } = props;
-  return <View style = {style}>
-    <FormLabel styles = {labelStyle}>{label}</FormLabel>
-    <FormInput {...props}/>
+  const { 
+    containerStyle,
+
+    label, 
+    labelStyle, 
+    labelContainerStyle, 
+    labelFontFamily,
+
+    inputStyle, 
+    inputContainerStyle, 
+    textInputRef,
+    inputContainerRef,
+    inputFocus,
+    onChangeText,
+    validator,
+    textInputProps,
+
+    errorMessage, 
+    errorContainerStyle,
+    errorLabelStyle,
+    errorFontFamily,
+  } = props;
+  
+  let _textInputProps = textInputProps || {};
+  const { onEndEditing, ...otherTextInputProps } = _textInputProps;
+  return <View style={containerStyle}>
+      <FormLabel 
+          containerStyle={labelStyle} 
+          labelStyle={labelContainerStyle}
+          labelFontFamily={labelFontFamily}>{label}</FormLabel>
+
+      <FormInput 
+          inputStyle={inputStyle} 
+          containerStyle={inputContainerStyle}
+          textInputRef={textInputRef}
+          containerRef={inputContainerRef}
+          focus={inputFocus}
+          onChangeText={(text) => {
+            if (onChangeText) {
+              onChangeText(text);
+            }
+          }} 
+          onEndEditing={(e) => {
+            if (validator) {
+              validator(e.nativeEvent.text);
+            }
+            if (onEndEditing) {
+              onEndEditing(e);
+            }
+          }}
+
+          {...otherTextInputProps}>
+      </FormInput>
+
+      <FormValidationMessage
+          containerStyle={errorContainerStyle}
+          labelStyle={errorLabelStyle}
+          fontFamily={errorFontFamily}>{errorMessage}</FormValidationMessage>
   </View>
 }
 
