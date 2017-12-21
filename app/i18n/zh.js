@@ -1,5 +1,5 @@
 export default zh = {
-    login: '登陆',
-    username: '用户名',
-    password: '密码',
+    home: '主页',
+    load: '读取',
+    loading: '读取中...',
 }

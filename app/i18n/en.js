@@ -1,5 +1,5 @@
 export default en = {
-    login: 'Login',
-    username: 'Username',
-    password: 'Password',
+    home: 'Home',
+    button: 'Load',
+    loading: 'Loading...',
 }

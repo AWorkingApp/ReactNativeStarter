@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   Button
-} from 'react-native-elements'
+} from 'react-native'
 
 const _Button = (props) => {
   return <Button {...props}></Button>;

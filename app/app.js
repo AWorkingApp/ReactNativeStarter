@@ -1,4 +1,3 @@
-
 /**
  * liberies
  */
@@ -22,6 +21,7 @@ I18n.translations = {
   en,
   zh,
 }
+
 
 class App extends Component {
   render () {
