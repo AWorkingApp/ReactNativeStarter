@@ -1,15 +1,33 @@
 
-export const FINISH_LOADING = 'FINISH_LOADING';
-export const LOADING_REQUEST = 'LOADING_REQUEST';
+export const GET_POST_RESOURCE = 'GET_POST_RESOURCE';
+export const GET_POSTS_RESOURCE = 'GET_POSTS_RESOURCE';
 
-export function finishLoading(){
+export const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
+export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
+
+export function getPost(id){
     return {
-        type: FINISH_LOADING
+        type: GET_POST_RESOURCE,
+        id
     }
 }
 
-export function loadingRequest(){
+export function getPosts(){
     return {
-        type: LOADING_REQUEST
+        type: GET_POSTS_RESOURCE,
+    }
+}
+
+export function getPostSuccess(post){
+    return {
+        type: GET_POST_SUCCESS,
+        post
+    }
+}
+
+export function getPostsSuccess(posts){
+    return {
+        type: GET_POSTS_SUCCESS,
+        posts
     }
 }

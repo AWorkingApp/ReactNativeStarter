@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
@@ -19,8 +21,8 @@ import Button from '../../components/Button';
 /**
  * Actions
  */
-import * as HomeActions from './actions';
-
+import { getPost, getPosts } from './actions';
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -34,18 +36,30 @@ const styles = StyleSheet.create({
   }
 });
 
-
 class Home extends Component {
+    static propTypes = {
+      loading: PropTypes.bool,
+      post: PropTypes.object,
+      posts: PropTypes.object,
+
+      getPost: PropTypes.func,
+      getPosts: PropTypes.func,
+    }
+
+    static defaultProps = {
+      loading: false
+    }
+   
     constructor (props) {
       super(props)
     }
 
     componentWillMount(){
-      this.props.loadingRequest();
+      this.props.getPost(1);
+      this.props.getPosts();
     }
   
     render () {
-      console.log(this.props.loading);
       return (
         <View style={styles.container}>
           <Text style={styles.text}>
@@ -53,27 +67,35 @@ class Home extends Component {
           </Text>
           <Button 
             onPress={()=> {
-              this.props.loadingRequest()
+              this.props.getPost(1)
+              this.props.getPosts()
             }}
             disabled={this.props.loading}
             title={this.props.loading ? I18n.t('loading') : I18n.t('button')}
           />
+          {!this.props.loading ?
+            <View>
+              {
+                this.props.post !== undefined ?
+                <Text>Post {this.props.post.get('title')} is loaded</Text> : null
+              }
+              {
+                this.props.posts !== undefined ?
+                <Text>All {this.props.posts.size} Posts are loaded</Text> : null
+              }
+            </View>
+            : null}
         </View>
       )
     }
   }
   
-  function mapDispatchToProps (dispatch) {
-    return {
-      dispatch,
-      loadingRequest: () => dispatch(HomeActions.loadingRequest())
-    };
-  }
-  
   function mapStateToProps (state) {
     return {
       loading: state.get('home').get('loading'),
+      post: state.get('home').get('post'),
+      posts: state.get('home').get('posts'),
     };
   }
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, { getPost, getPosts })(Home)

@@ -658,7 +658,6 @@
 				7FE567EDAFDF4F13B8D6B3BA /* Frameworks */,
 				1AF75C544FC34E518E17AA8D /* Resources */,
 				7410A6F71FEB4B9E00F9545D /* Recovered References */,
-
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -681,7 +680,6 @@
 			children = (
 				ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */,
 				7410A6FF1FEB4BA000F9545D /* libRCTBlob-tvOS.a */,
-
 			);
 			name = Products;
 			sourceTree = "<group>";
