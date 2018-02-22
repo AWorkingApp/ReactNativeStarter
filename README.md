@@ -13,5 +13,15 @@ Project based on create-react-native-app
 - immutablejs 
 - redux-immutable
 
+# Rename the project
+
+You may want to rename the project before starting the development.
+
+This starter use [react-native-rename](https://github.com/junedomingo/react-native-rename) to rename your project.
+
+To rename the project, simply run `npm run rename -- <New Name>`
+
+Or rename bundleId as well `npm run rename -- <New Name> -b <New BundleId>`
+
 # License
 MIT
