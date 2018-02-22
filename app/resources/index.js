@@ -1,1 +1,1 @@
-export { default as PostResource } from './post';
+export { postResource as PostResource } from './resources';
