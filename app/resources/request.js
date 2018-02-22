@@ -18,8 +18,7 @@ export function _get(url, options = {}) {
     });
 }
 
-export function _post(url, entity = {}, options = {}) {
-    options.data = entity;
+export function _post(url, options = {}) {
     return request({
         method: METHODS.POST,
         url: url,
@@ -27,8 +26,7 @@ export function _post(url, entity = {}, options = {}) {
     });
 }
 
-export function _put(url, entity = {}, options = {}) {
-    options.data = entity;
+export function _put(url, options = {}) {
     return request({
         method: METHODS.PUT,
         url: url,
